@@ -1,7 +1,8 @@
 const prompt = require('prompt-sync')();
 
 let candidats = [
-    {
+
+ {
         cin: "A123456",
         nom: "Akhannouch",
         prenom: "Aziz",
@@ -26,38 +27,40 @@ let candidats = [
         electeurs: []
     },
     {
-        id: 1,
-        cin: "AB123456",
-        nom: "Boushaba",
-        prenom: "Soufiane",
-        partiPolitique: "Indépendant",
-        age: 40,
-        electeurs: []
+    id: 1,
+    cin: "AB123456",
+    nom: "Boushaba",
+    prenom: "Soufiane",
+    parti: "Indépendant",
+    age: 40,
+    electeurs:[]
+
     },
     {
-        id: 2,
-        cin: "CD987654",
-        nom: "El Amrani",
-        prenom: "Yassine",
-        partiPolitique: "Parti A",
-        age: 35,
-        electeurs: []
+    id: 2,
+    cin: "CD987654",
+    nom: "El Amrani",
+    prenom: "Yassine",
+    parti: "Parti A",
+    age: 35,
+    electeurs:[]
     },
     {
-        id: 3,
-        cin: "EF555666",
-        nom: "Benali",
-        prenom: "Khadija",
-        partiPolitique: "Parti A",
-        age: 29,
-        electeurs: []
+    id: 3,
+    cin: "EF555666",
+    nom: "Benali",
+    prenom: "Khadija",
+    parti: "Parti A",
+    age: 29,
+    electeurs:[]
     }
+
+
 ];
 
 let choix = "";
 
-while (choix !== "0") {
-    console.log(`
+while (choix !== "0") {console.log(`
 ========================================
  GESTION DES ÉLECTIONS - MENU PRINCIPAL
 ========================================
@@ -116,6 +119,8 @@ while (choix !== "0") {
     }
 }
 
+
+
 function ajouterUnCandidat() {
     console.log("ajouter un candidat: ");
     let cin = prompt("ajouter le cin: ");
@@ -123,6 +128,7 @@ function ajouterUnCandidat() {
     let prenom = prompt("ajouter le prenom: ");
     let partiPolitique = prompt("ajouter la parti politique ou Indépendant: ");
     let age = Number(prompt("ajouter l'age: "));
+
 
     let candidat = {
         cin: cin,
@@ -142,10 +148,10 @@ function ajouterPlusieursCandidats() {
     let nombre = Number(prompt("Combien de candidats voulez-vous ajouter ? "));
 
     for (let i = 0; i < nombre; i++) {
-        console.log("Candidat " + (i + 1));
+        console.log("Candidat" + (i + 1));
         ajouterUnCandidat();
+       }
     }
-}
 
 function afficherCandidats() {
     console.log("Afficher la liste des candidats");
@@ -178,7 +184,7 @@ function afficherCandidats() {
 
         for (let i = 0; i < listeTrie.length; i++) {
             let c = listeTrie[i];
-            console.log(`CIN: ${c.cin} | Nom: ${c.nom} ${c.prenom} | Parti: ${c.partiPolitique} | Âge: ${c.age} | Votes: ${c.electeurs.length}`);
+            console.log(`CIN: ${c.cin} | Nom: ${c.nom} ${c.prenom} | Parti: ${c.partiPolitique} | Âge: ${c.age} | Votes: ${c.electeurs.length}`)
         }
     } else if (subChoix === "3") {
         let partiRecherche = prompt("Entrez le nom du parti politique : ");
@@ -186,7 +192,7 @@ function afficherCandidats() {
 
         for (let i = 0; i < candidats.length; i++) {
             let c = candidats[i];
-            if (c.partiPolitique && c.partiPolitique.toLowerCase() === partiRecherche.toLowerCase()) {
+            if (c.partiPolitique === partiRecherche) {
                 console.log(`CIN: ${c.cin} | Nom: ${c.nom} ${c.prenom} | Parti: ${c.partiPolitique} | Âge: ${c.age} | Votes: ${c.electeurs.length}`);
                 trouve = true;
             }
@@ -202,12 +208,14 @@ function voter() {
     console.log("Voter pour un candidat");
     let cinElecteur = prompt("Entrez le CIN de l'électeur : ");
 
+ 
     for (let i = 0; i < candidats.length; i++) {
         if (candidats[i].electeurs.includes(cinElecteur)) {
             console.log("Ce numéro de CIN a déjà été utilisé pour voter !");
             return;
         }
     }
+
 
     let cinCandidat = prompt("Entrez le CIN du candidat pour lequel vous voulez voter : ");
 
@@ -220,7 +228,10 @@ function voter() {
     }
 
     console.log("Aucun candidat trouvé avec ce numéro CIN.");
-}
+} 
+
+
+
 
 function modifierCandidat() {
     console.log("Modifier un candidat");
@@ -315,7 +326,7 @@ function afficherStatistiques() {
         }
     }
 
-    for (let p in partis) {
+    for (let p in partis){
         console.log("- " + p + " : " + partis[p] + " candidat(s)");
     }
 }
